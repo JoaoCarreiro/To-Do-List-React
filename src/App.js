@@ -15,10 +15,11 @@ const App = props => {
         setToDoList(toDoList.concat(inputValue));
         setInputValue('');
       };
-      
+
     }
   };
-  
+
+
 
   const removeToDo = (indexToRemove) => {
     console.log(indexToRemove);
@@ -32,11 +33,9 @@ const App = props => {
       {toDo}
       {' '}
       <button onClick={() => removeToDo(index)}>X</button>
+      <input type='checkbox'/>
     </p>);
 
-
-
-  //console.log(listToDoList);
 
   // TRANSFORMAR EM FORM E  METER O ONCLICK EM ONSUBMIT, DAR PREVENTDEFAULT PARA NAO FAZER RESFRESH
   return (
@@ -44,22 +43,43 @@ const App = props => {
       <div>
         To-do List
       </div>
-      <input
-        type="text"
-        name="name"
-        value={inputValue}
-        onChange={event => setInputValue(event.target.value)}
-        required
-      />
-      <AddButton onClick={addToDo} />
+      <div>
+        <input
+          type="text"
+          name="name"
+          value={inputValue}
+          onChange={event => setInputValue(event.target.value)}
+        />
+        <AddButton onClick={addToDo} />
+      </div>
       <div>{listToDoList}</div>
     </div>
   );
 };
+/* PASSAR ISTO PARA FORM SEI LA OU O CARALHO
+const Form = props => {
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+  };
+
+  return (<div>
+    <form onSubmit={handleSubmit} >
+      <input
+        type="text"
+        name="name"
+        value={props.inputValue}
+        onChange={event => props.setInputValue(event.target.value)}
+      />
+      <AddButton onClick={props.addToDo} />
+    </form>
+
+  </div>);
+};*/
 
 const AddButton = props => {
   return <button
-    onClick={props.onClick}>Adicionar Item
+    onClick={props.onClick} addToDo={props.addToDo}>Adicionar Item
   </button>
 };
 
