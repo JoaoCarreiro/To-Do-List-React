@@ -19,6 +19,7 @@ const App = props => {
     }
   };
   
+
   const removeToDo = (indexToRemove) => {
     console.log(indexToRemove);
     setToDoList(toDoList.filter((toDo, index) =>
@@ -33,7 +34,11 @@ const App = props => {
       <button onClick={() => removeToDo(index)}>X</button>
     </p>);
 
+
+
   //console.log(listToDoList);
+
+  // TRANSFORMAR EM FORM E  METER O ONCLICK EM ONSUBMIT, DAR PREVENTDEFAULT PARA NAO FAZER RESFRESH
   return (
     <div className="App">
       <div>
