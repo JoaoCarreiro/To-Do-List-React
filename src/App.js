@@ -7,18 +7,15 @@ const App = props => {
   const [toDoList, setToDoList] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
-  //console.log(toDoList);
+  // passar ToDo a objeto para receber o texto (ja recebe) e se esta checked (true ou false)
+  // criar objeto e passar o objeto para o concat abaixo
 
   const addToDo = () => {
     if (inputValue !== '') {
-      if (toDoList.includes(inputValue) === false) {
-        setToDoList(toDoList.concat(inputValue));
-        setInputValue('');
-      };
-
+      setToDoList(toDoList.concat(inputValue));
+      setInputValue('');
     }
   };
-
 
 
   const removeToDo = (indexToRemove) => {
@@ -33,7 +30,7 @@ const App = props => {
       {toDo}
       {' '}
       <button onClick={() => removeToDo(index)}>X</button>
-      <input type='checkbox'/>
+      <input type='checkbox' />
     </p>);
 
 
@@ -43,43 +40,39 @@ const App = props => {
       <div>
         To-do List
       </div>
-      <div>
+      <Form onSubmit={addToDo}>
         <input
           type="text"
           name="name"
           value={inputValue}
           onChange={event => setInputValue(event.target.value)}
         />
-        <AddButton onClick={addToDo} />
-      </div>
+        <AddButton />
+      </Form>
       <div>{listToDoList}</div>
     </div>
   );
 };
-/* PASSAR ISTO PARA FORM SEI LA OU O CARALHO
+
 const Form = props => {
-  
+
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('submetido');
+    props.onSubmit();
   };
 
-  return (<div>
-    <form onSubmit={handleSubmit} >
-      <input
-        type="text"
-        name="name"
-        value={props.inputValue}
-        onChange={event => props.setInputValue(event.target.value)}
-      />
-      <AddButton onClick={props.addToDo} />
+  return (
+    <form autocomplete="off" onSubmit={handleSubmit} >
+      {props.children}
     </form>
+  );
 
-  </div>);
-};*/
+};
 
 const AddButton = props => {
-  return <button
-    onClick={props.onClick} addToDo={props.addToDo}>Adicionar Item
+  return <button>
+    Adicionar Item
   </button>
 };
 
