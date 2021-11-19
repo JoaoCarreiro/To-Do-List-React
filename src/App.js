@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import Form from './components/form';
+import AddButton from './components/addbutton';
 
 const App = props => {
 
@@ -12,7 +14,10 @@ const App = props => {
 
   const addToDo = () => {
     if (inputValue !== '') {
-      setToDoList(toDoList.concat(inputValue));
+      const newToDo = 
+        {text: inputValue,
+         done: false};
+      setToDoList(newToDo.text);
       setInputValue('');
     }
   };
@@ -27,7 +32,7 @@ const App = props => {
 
   const listToDoList = toDoList.map((toDo, index) =>
     <p>
-      {toDo}
+      {toDo.text}
       {' '}
       <button onClick={() => removeToDo(index)}>X</button>
       <input type='checkbox' />
@@ -54,26 +59,8 @@ const App = props => {
   );
 };
 
-const Form = props => {
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log('submetido');
-    props.onSubmit();
-  };
 
-  return (
-    <form autocomplete="off" onSubmit={handleSubmit} >
-      {props.children}
-    </form>
-  );
 
-};
-
-const AddButton = props => {
-  return <button>
-    Adicionar Item
-  </button>
-};
 
 export default App;
